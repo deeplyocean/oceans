@@ -25,7 +25,7 @@ public class AccountService {
 
     public Account createAccount(AccountDto.Create dto){
         Account account = modelMapper.map(dto, Account.class);
-        return this.accountRepository.save(account);;
+        return this.accountRepository.save(account);
     }
 
     public Account modifyAccount(Long id, AccountDto.Update dto){
