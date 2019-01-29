@@ -1,42 +1,57 @@
 package org.ocean.account;
 
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Service
+@Slf4j
 public class AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
 
-    public List<Account> getAccountList(){
-        return this.accountRepository.findAll();
+    public List<AccountDto.Response> getAccountList(){
+        List<Account> accountList = this.accountRepository.findAll();
+        Type listType = new TypeToken<List<AccountDto.Response>>() {
+        }.getType();
+        return modelMapper.map(accountList, listType);
     }
 
-    public Account getAccount(Long id){
-        return this.accountRepository.findById(id).get();
+    public AccountDto.Response getAccount(Long id){
+        Account account = this.accountRepository.findById(id).get();
+        return modelMapper.map(account, AccountDto.Response.class);
     }
 
-    public Account createAccount(Account account){
-        return this.accountRepository.save(account);
+    public AccountDto.Response createAccount(AccountDto.Create dto){
+        Account account = this.accountRepository.save(modelMapper.map(dto, Account.class));
+        log.debug("{}", account);
+        return modelMapper.map(account, AccountDto.Response.class);
     }
 
-    public Account modifyAccount(Long id, Account account){
-        Account orgAccount = getAccount(id);
-        orgAccount.setPassword(account.getPassword());
-        orgAccount.setAccountName(account.getAccountName());
-        orgAccount.setEmail(account.getEmail());
-        return this.accountRepository.save(orgAccount);
+    public AccountDto.Response modifyAccount(Long id, AccountDto.Update dto){
+        Account account = this.accountRepository.findById(id).get();
+        account.setPassword(dto.getPassword());
+        account.setAccountName(dto.getAccountName());
+        account.setEmail(dto.getEmail());
+        Account newAcount = this.accountRepository.save(account);
+        return modelMapper.map(newAcount, AccountDto.Response.class);
     }
 
     public void removeAccount(Long id){
         this.accountRepository.deleteById(id);
     }
 
-    public Account getAccountByEmail(String accountEmail){
-        return this.accountRepository.findByEmail(accountEmail);
+    public AccountDto.Response getAccountByEmail(String accountEmail){
+        Account account = this.accountRepository.findByEmail(accountEmail);
+        return modelMapper.map(account, AccountDto.Response.class);
     }
 }
