@@ -24,15 +24,14 @@ public class AccountRepositoryTest {
     @Rollback
     public void addAccount(){
         Account account = Account.builder()
-                .accountNo("user")
+                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
                 .password("test")
                 .accountName("ethan")
-                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
                 .build();
         Account newAccount = accountRepository.save(account);
         assertThat(newAccount.getId()).isNotNull();
-        assertThat(newAccount.getAccountNo()).isEqualTo("user");
-        assertThat(newAccount.getAccountName()).isEqualTo("ethan");
+        assertThat(newAccount.getEmail()).isEqualTo(account.getEmail());
+        assertThat(newAccount.getAccountName()).isEqualTo(account.getAccountName());
 
         entityManager.clear();
     }

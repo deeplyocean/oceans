@@ -36,19 +36,17 @@ public class AccountControllerTest {
     @Rollback
     public void createAccountTest() throws Exception {
         AccountDto.Create account = AccountDto.Create.builder()
-                .accountNo("user")
+                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
                 .password("test")
                 .accountName("ethan")
-                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
                 .build();
         ResultActions createResult = mockMvc.perform(post("/accounts")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(account)));
         createResult.andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.accountNo", is(account.getAccountNo())))
-                .andExpect(jsonPath("$.accountName").value(account.getAccountName()))
                 .andExpect(jsonPath("$.email").value(account.getEmail()))
+                .andExpect(jsonPath("$.accountName").value(account.getAccountName()))
         ;
     }
 

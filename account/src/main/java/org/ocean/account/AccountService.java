@@ -4,15 +4,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
-public class AccountService {
+public class AccountService implements UserDetailsService {
 
     @Autowired
     private AccountRepository accountRepository;
@@ -66,5 +73,13 @@ public class AccountService {
     public AccountDto.Response getAccountByEmail(String accountEmail){
         Account account = this.accountRepository.findByEmail(accountEmail);
         return modelMapper.map(account, AccountDto.Response.class);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Account account = this.accountRepository.findByEmail(username);
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("USER_ROLE"));
+        return new User(account.getEmail(), account.getPassword(), authorities);
     }
 }

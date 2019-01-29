@@ -15,32 +15,29 @@ public class AccountDto {
     public static class Create {
         @NotBlank
         @Size(min=6, max=20)
-        private String accountNo;
+        private String email;
         @NotBlank
         @Size(min=8, max=20)
         private String password;
         @NotBlank
         private String accountName;
-
-        private String email;
     }
 
     @Data
     public static class Response {
         private Long id;
-        private String accountNo;
-        private String accountName;
         private String email;
+        private String accountName;
     }
 
     @Data @Builder @NoArgsConstructor @AllArgsConstructor
     public static class Update {
         @NotBlank
+        private String email;
+        @NotBlank
         @Size(min=8, max=20)
         private String password;
         @NotBlank
         private String accountName;
-
-        private String email;
     }
 }

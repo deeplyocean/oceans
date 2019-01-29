@@ -19,9 +19,8 @@ public class Account {
     @Id @GeneratedValue
     private Long id;
 
-    private String accountNo;
+    private String email;
     private String password;
     private String accountName;
-    private String email;
 
 }

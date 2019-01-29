@@ -23,7 +23,7 @@ public class AccountServiceTest {
         AccountDto.Create dto = createAccountDto();
         AccountDto.Response result = accountService.createAccount(dto);
         assertThat(result.getId()).isNotNull();
-        assertThat(result.getAccountNo()).isEqualTo(dto.getAccountNo());
+        assertThat(result.getEmail()).isEqualTo(dto.getEmail());
         assertThat(result.getAccountName()).isEqualTo(dto.getAccountName());
     }
 
@@ -39,10 +39,9 @@ public class AccountServiceTest {
 
     private AccountDto.Create createAccountDto(){
         AccountDto.Create dto = AccountDto.Create.builder()
-                .accountNo("user")
+                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
                 .password("test")
                 .accountName("ethan")
-                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
                 .build();
         return dto;
     }
