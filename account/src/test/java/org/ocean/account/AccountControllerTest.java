@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,12 +33,13 @@ public class AccountControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
+    @Rollback
     public void createAccountTest() throws Exception {
         AccountDto.Create account = AccountDto.Create.builder()
                 .accountNo("user")
                 .password("test")
                 .accountName("ethan")
-                .email("account@ocean.com")
+                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
                 .build();
         ResultActions createResult = mockMvc.perform(post("/accounts")
                 .contentType(MediaType.APPLICATION_JSON)

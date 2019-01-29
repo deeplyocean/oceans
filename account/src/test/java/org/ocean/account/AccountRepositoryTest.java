@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,12 +21,13 @@ public class AccountRepositoryTest {
     private AccountRepository accountRepository;
 
     @Test
+    @Rollback
     public void addAccount(){
         Account account = Account.builder()
                 .accountNo("user")
                 .password("test")
                 .accountName("ethan")
-                .email("account@ocean.com")
+                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
                 .build();
         Account newAccount = accountRepository.save(account);
         assertThat(newAccount.getId()).isNotNull();
@@ -33,6 +35,5 @@ public class AccountRepositoryTest {
         assertThat(newAccount.getAccountName()).isEqualTo("ethan");
 
         entityManager.clear();
-
     }
 }
