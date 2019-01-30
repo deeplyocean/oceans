@@ -8,6 +8,8 @@ import org.ocean.type.Password;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.Set;
 
 public class AccountDto {
 
@@ -19,6 +21,7 @@ public class AccountDto {
         private Password password;
         @NotBlank
         private String accountName;
+        private List<AccountRoles> roles;
     }
 
     @Data
@@ -26,6 +29,7 @@ public class AccountDto {
         private Long id;
         private Email email;
         private String accountName;
+        private List<AccountRoles> roles;
     }
 
     @Data @Builder
@@ -36,5 +40,6 @@ public class AccountDto {
         private Password password;
         @NotBlank
         private String accountName;
+        private List<AccountRoles> roles;
     }
 }

@@ -9,10 +9,10 @@ import lombok.Setter;
 import org.ocean.type.Email;
 import org.ocean.type.Password;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter @EqualsAndHashCode(of="id")
@@ -27,6 +27,9 @@ public class Account {
     @Embedded
     private Password password;
     private String accountName;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private List<AccountRoles> roles;
 
     @Builder
     public Account(Email email, Password password, String accountName){

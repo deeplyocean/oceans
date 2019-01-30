@@ -15,6 +15,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -40,6 +43,7 @@ public class AccountControllerTest {
                 .email(Email.builder().value(String.format("account%s@ocean.com", System.currentTimeMillis())).build())
                 .password(Password.builder().value("test1234").build())
                 .accountName("ethan")
+                .roles(Arrays.asList(AccountRoles.ADMIN))
                 .build();
         ResultActions createResult = mockMvc.perform(post("/accounts")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -48,6 +52,7 @@ public class AccountControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.email.value").value(account.getEmail().getValue()))
                 .andExpect(jsonPath("$.accountName").value(account.getAccountName()))
+                .andExpect(jsonPath("$.roles[0]").value(AccountRoles.ADMIN.name()))
         ;
     }
 

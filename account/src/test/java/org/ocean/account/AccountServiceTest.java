@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -44,6 +46,7 @@ public class AccountServiceTest {
                 .email(Email.builder().value(String.format("account%s@ocean.com", System.currentTimeMillis())).build())
                 .password(Password.builder().value("test1234").build())
                 .accountName("ethan")
+                .roles(Arrays.asList(AccountRoles.ADMIN))
                 .build();
         return dto;
     }
