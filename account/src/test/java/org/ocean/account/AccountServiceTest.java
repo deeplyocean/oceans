@@ -2,6 +2,8 @@ package org.ocean.account;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.ocean.type.Email;
+import org.ocean.type.Password;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -39,8 +41,8 @@ public class AccountServiceTest {
 
     private AccountDto.Create createAccountDto(){
         AccountDto.Create dto = AccountDto.Create.builder()
-                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
-                .password("test")
+                .email(Email.builder().value(String.format("account%s@ocean.com", System.currentTimeMillis())).build())
+                .password(Password.builder().value("test1234").build())
                 .accountName("ethan")
                 .build();
         return dto;

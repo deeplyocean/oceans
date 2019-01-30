@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity createAccount(@RequestBody AccountDto.Create dto, Errors errors){
+    public ResponseEntity createAccount(@RequestBody @Valid AccountDto.Create dto, Errors errors){
         log.debug("createAccount:dto::{}", dto);
         if(errors.hasErrors()){
             log.error("{}", errors.getAllErrors());

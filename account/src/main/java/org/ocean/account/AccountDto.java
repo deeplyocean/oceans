@@ -1,24 +1,22 @@
 package org.ocean.account;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.ocean.type.Email;
+import org.ocean.type.Password;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 public class AccountDto {
 
-    @Data @Builder @NoArgsConstructor @AllArgsConstructor
+    @Data @Builder
     public static class Create {
-        @NotBlank
-        @Size(min=6, max=20)
-        private String email;
-        @NotBlank
-        @Size(min=8, max=20)
-        private String password;
+        @Valid
+        private Email email;
+        @Valid
+        private Password password;
         @NotBlank
         private String accountName;
     }
@@ -26,17 +24,16 @@ public class AccountDto {
     @Data
     public static class Response {
         private Long id;
-        private String email;
+        private Email email;
         private String accountName;
     }
 
-    @Data @Builder @NoArgsConstructor @AllArgsConstructor
+    @Data @Builder
     public static class Update {
-        @NotBlank
-        private String email;
-        @NotBlank
-        @Size(min=8, max=20)
-        private String password;
+        @Valid
+        private Email email;
+        @Valid
+        private Password password;
         @NotBlank
         private String accountName;
     }

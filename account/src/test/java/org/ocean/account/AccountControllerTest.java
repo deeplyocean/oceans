@@ -3,6 +3,8 @@ package org.ocean.account;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.ocean.type.Email;
+import org.ocean.type.Password;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -36,8 +37,8 @@ public class AccountControllerTest {
     @Rollback
     public void createAccountTest() throws Exception {
         AccountDto.Create account = AccountDto.Create.builder()
-                .email(String.format("account%s@ocean.com", System.currentTimeMillis()))
-                .password("test")
+                .email(Email.builder().value(String.format("account%s@ocean.com", System.currentTimeMillis())).build())
+                .password(Password.builder().value("test1234").build())
                 .accountName("ethan")
                 .build();
         ResultActions createResult = mockMvc.perform(post("/accounts")
@@ -45,7 +46,7 @@ public class AccountControllerTest {
                 .content(objectMapper.writeValueAsString(account)));
         createResult.andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.email").value(account.getEmail()))
+                .andExpect(jsonPath("$.email.value").value(account.getEmail().getValue()))
                 .andExpect(jsonPath("$.accountName").value(account.getAccountName()))
         ;
     }

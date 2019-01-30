@@ -3,6 +3,8 @@ package org.ocean.account;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.ocean.type.Email;
+import org.ocean.type.Password;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -46,11 +48,11 @@ public class AccountService implements UserDetailsService {
 
         if(this.accountRepository.countByEmail(dto.getEmail())>0){
             log.error("email duplicated exception. {}", dto.getEmail());
-            throw new RuntimeException(dto.getEmail());
+            throw new RuntimeException(dto.getEmail().getValue());
         }
 
         Account account = modelMapper.map(dto, Account.class);
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        account.updatePassword(Password.builder().value(passwordEncoder.encode(dto.getPassword().getValue())).build());
         Account newAccount = this.accountRepository.save(account);
         log.debug("createAccount:{}", newAccount);
         return modelMapper.map(newAccount, AccountDto.Response.class);
@@ -58,9 +60,8 @@ public class AccountService implements UserDetailsService {
 
     public AccountDto.Response modifyAccount(Long id, AccountDto.Update dto){
         Account account = this.accountRepository.findById(id).get();
-        account.setPassword(passwordEncoder.encode(dto.getPassword()));
-        account.setAccountName(dto.getAccountName());
-        account.setEmail(dto.getEmail());
+        account.updateAccount(account);
+        account.updatePassword(Password.builder().value(passwordEncoder.encode(dto.getPassword().getValue())).build());
         Account newAccount = this.accountRepository.save(account);
         log.debug("modifyAccount:{}", newAccount);
         return modelMapper.map(newAccount, AccountDto.Response.class);
@@ -70,16 +71,16 @@ public class AccountService implements UserDetailsService {
         this.accountRepository.deleteById(id);
     }
 
-    public AccountDto.Response getAccountByEmail(String accountEmail){
-        Account account = this.accountRepository.findByEmail(accountEmail);
+    public AccountDto.Response getAccountByEmail(Email email){
+        Account account = this.accountRepository.findByEmail(email);
         return modelMapper.map(account, AccountDto.Response.class);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = this.accountRepository.findByEmail(username);
+        Account account = this.accountRepository.findByEmail(Email.builder().value(username).build());
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("USER_ROLE"));
-        return new User(account.getEmail(), account.getPassword(), authorities);
+        return new User(account.getEmail().getValue(), account.getPassword().getValue(), authorities);
     }
 }
