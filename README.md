@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/deeplyocean/oceans.svg?style=svg)](https://circleci.com/gh/deeplyocean/oceans)
+[![Build Status](https://travis-ci.org/deeplyocean/oceans.svg?branch=master)](https://travis-ci.org/deeplyocean/oceans)
 
 # oceans
 
