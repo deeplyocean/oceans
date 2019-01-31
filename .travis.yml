@@ -13,7 +13,8 @@ branches:
  only:
     - master
 
-#after_success:
+after_success:
+   - mvn clean coveralls:report
 #  - mvn clean cobertura:cobertura coveralls:report
 
 #notifications:

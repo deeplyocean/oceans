@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/deeplyocean/oceans.svg?branch=master)](https://travis-ci.org/deeplyocean/oceans)
+[![Coverage Status](https://coveralls.io/repos/github/deeplyocean/oceans/badge.svg?branch=master)](https://coveralls.io/github/deeplyocean/oceans?branch=master)
 
-# oceans
+# Oceans
 
 Study Repository
 
