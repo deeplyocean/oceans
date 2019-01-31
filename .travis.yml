@@ -4,7 +4,7 @@ jdk:
 
 install: true
 
-script: mvn install
+script: mvn cobertura:cobertura
 
 before_install:
   - mvn clean
@@ -14,7 +14,7 @@ branches:
     - master
 
 after_success:
-  - mvn clean cobertura:cobertura coveralls:report
+  - bash <(curl -s https://codecov.io/bash)
 
 #notifications:
 #  slack:

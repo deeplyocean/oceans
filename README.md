@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/deeplyocean/oceans.svg?branch=master)](https://travis-ci.org/deeplyocean/oceans)
-[![Coverage Status](https://coveralls.io/repos/github/deeplyocean/oceans/badge.svg?branch=master)](https://coveralls.io/github/deeplyocean/oceans?branch=master)
+[![codecov](https://codecov.io/gh/deeplyocean/oceans/branch/master/graph/badge.svg)](https://codecov.io/gh/deeplyocean/oceans)
 [![HitCount](http://hits.dwyl.io/deeplyocean/oceans.svg)](http://hits.dwyl.io/deeplyocean/oceans)
 
 # Oceans
