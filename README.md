@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/deeplyocean/oceans.svg?style=svg)](https://circleci.com/gh/deeplyocean/oceans)
+
 # oceans
 
 Study Repository
