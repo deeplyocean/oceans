@@ -16,7 +16,7 @@ Study Repository
 
 ## Development Environments
 * Spring Boot 2.1.2.RELEASE
-* [Java 11(java-11-openjdk-amd64)](https://openjdk.java.net/install/)
+* [Java 1.8(java-8-openjdk-amd64)](https://openjdk.java.net/install/)
 * JPA(H2, PostgreSQL)
 * [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/)
 * [Lombok](https://projectlombok.org/download) 1.18.4
