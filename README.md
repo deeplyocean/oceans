@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.org/deeplyocean/oceans.svg?branch=master)](https://travis-ci.org/deeplyocean/oceans)
-[![codecov](https://codecov.io/gh/deeplyocean/oceans/branch/master/graph/badge.svg)](https://codecov.io/gh/deeplyocean/oceans)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=alert_status)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=coverage)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=ncloc)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=security_rating)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=bugs)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
 [![HitCount](http://hits.dwyl.io/deeplyocean/oceans.svg)](http://hits.dwyl.io/deeplyocean/oceans)
 
 # Oceans
