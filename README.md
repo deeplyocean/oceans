@@ -1,17 +1,15 @@
-[![Build Status](https://travis-ci.org/deeplyocean/oceans.svg?branch=master)](https://travis-ci.org/deeplyocean/oceans)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=alert_status)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
-[![HitCount](http://hits.dwyl.io/deeplyocean/oceans.svg)](http://hits.dwyl.io/deeplyocean/oceans)
+# Oceans [![Build Status](https://travis-ci.org/deeplyocean/oceans.svg?branch=master)](https://travis-ci.org/deeplyocean/oceans) [![HitCount](http://hits.dwyl.io/deeplyocean/oceans.svg)](http://hits.dwyl.io/deeplyocean/oceans)
 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=coverage)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=security_rating)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=bugs)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=code_smells)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=ncloc)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
+Study Repository for programming and management of application development life cycle using Github plugins.
 
-# Oceans
+## Code Quality Status
 
-Study Repository
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.ocean%3Aoceans&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.ocean%3Aoceans)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.ocean%3Aoceans&metric=coverage)](https://sonarcloud.io/dashboard?id=org.ocean%3Aoceans)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=org.ocean%3Aoceans&metric=bugs)](https://sonarcloud.io/dashboard?id=org.ocean%3Aoceans)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=org.ocean%3Aoceans&metric=code_smells)](https://sonarcloud.io/dashboard?id=org.ocean%3Aoceans)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=org.ocean%3Aoceans&metric=ncloc)](https://sonarcloud.io/dashboard?id=org.ocean%3Aoceans)
 
 ## Contents
 1. Spring Boot
