@@ -4,7 +4,7 @@ jdk:
 
 install: true
 
-script: - mvn org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+script: - mvn install sonar:sonar
 
 before_install:
   - mvn clean
