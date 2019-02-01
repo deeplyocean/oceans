@@ -4,7 +4,9 @@
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=coverage)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=security_rating)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=bugs)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=code_smells)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=deeplyocean_oceans&metric=ncloc)](https://sonarcloud.io/dashboard?id=deeplyocean_oceans)
 
 # Oceans
