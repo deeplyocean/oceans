@@ -11,7 +11,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +47,7 @@ public class AccountService implements UserDetailsService {
 
         if(this.accountRepository.countByEmail(dto.getEmail())>0){
             log.error("email duplicated exception. {}", dto.getEmail());
-            throw new RuntimeException(dto.getEmail().getValue());
+            throw new AccountNotFoundException(dto.getEmail());
         }
 
         Account account = modelMapper.map(dto, Account.class);
@@ -77,7 +76,7 @@ public class AccountService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         Account account = this.accountRepository.findByEmail(Email.builder().value(username).build());
         return new User(account.getEmail().getValue(), account.getPassword().getValue(), authorities(account.getRoles()));
     }

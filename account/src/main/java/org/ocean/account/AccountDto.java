@@ -12,6 +12,10 @@ import java.util.List;
 
 public class AccountDto {
 
+    private AccountDto(){
+        throw new IllegalStateException(this.getClass().getName());
+    }
+
     @Data @Builder
     public static class Create {
         @Valid
