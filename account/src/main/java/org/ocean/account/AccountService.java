@@ -47,7 +47,7 @@ public class AccountService implements UserDetailsService {
 
         if(this.accountRepository.countByEmail(dto.getEmail())>0){
             log.error("email duplicated exception. {}", dto.getEmail());
-            throw new AccountNotFoundException(dto.getEmail().getValue());
+            throw new AccountDuplicateException(dto.getEmail());
         }
 
         Account account = modelMapper.map(dto, Account.class);

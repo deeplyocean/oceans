@@ -70,6 +70,20 @@ public class AccountServiceTest {
 
     @Test
     @Rollback
+    public void createAccountExistTest(){
+        AccountDto.Create dto = createAccountDto();
+        AccountDto.Response result = accountService.createAccount(dto);
+        assertThat(result.getId()).isNotNull();
+        assertThat(result.getEmail()).isEqualTo(dto.getEmail());
+
+        expectedException.expect(AccountDuplicateException.class);
+        expectedException.expectMessage(Matchers.containsString(dto.getEmail().getValue()));
+
+        accountService.createAccount(dto);
+    }
+
+    @Test
+    @Rollback
     public void getAccountByEmail(){
         AccountDto.Create dto = createAccountDto();
         AccountDto.Response result = accountService.createAccount(dto);

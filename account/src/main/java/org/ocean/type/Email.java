@@ -19,10 +19,10 @@ public class Email {
     private String value;
 
     public String getId(){
-        return value.substring(0,value.indexOf("@"));
+        return value.substring(0,value.indexOf('@'));
     }
 
     public String getHost(){
-        return value.substring(value.indexOf("@")+1);
+        return value.substring(value.indexOf('@')+1);
     }
 }
