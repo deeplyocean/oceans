@@ -1,1 +1,18 @@
-CODECOV_TOKEN="974516fd-d3f0-4f59-9078-c824e949e6c4"
+coverage:
+  precision: 2
+  round: nearest
+  range: "60...90"
+  status:
+    project:
+      default:
+        threshold: 2%
+    patch:
+      default:
+        target: 80%
+  ignore:
+
+codecov:
+  branch: master
+
+comment:
+  layout: "diff"
