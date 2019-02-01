@@ -8,11 +8,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
 @Getter @Builder @EqualsAndHashCode(of = "value")
 @NoArgsConstructor @AllArgsConstructor
-public class Email {
+public class Email implements Serializable {
+
+    private static final long serialVersionUID = -6319732535486161195L;
 
     @javax.validation.constraints.Email
     @Column(name = "email", nullable = false, unique = true)
