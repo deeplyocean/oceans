@@ -9,7 +9,6 @@ import org.ocean.type.Password;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
-import java.util.Set;
 
 public class AccountDto {
 

@@ -1,18 +1,11 @@
 package org.ocean.account;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.ocean.type.Email;
 import org.ocean.type.Password;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter @Setter @EqualsAndHashCode(of="id")

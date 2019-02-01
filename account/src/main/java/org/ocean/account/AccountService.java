@@ -40,7 +40,7 @@ public class AccountService implements UserDetailsService {
     }
 
     public AccountDto.Response getAccount(Long id){
-        Account account = this.accountRepository.findById(id).get();
+        Account account = this.accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException(id));
         return modelMapper.map(account, AccountDto.Response.class);
     }
 
@@ -59,8 +59,8 @@ public class AccountService implements UserDetailsService {
     }
 
     public AccountDto.Response modifyAccount(Long id, AccountDto.Update dto){
-        Account account = this.accountRepository.findById(id).get();
-        account.updateAccount(account);
+        Account account = this.accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException(id));
+        account.updateAccount(modelMapper.map(dto, Account.class));
         account.updatePassword(Password.builder().value(passwordEncoder.encode(dto.getPassword().getValue())).build());
         Account newAccount = this.accountRepository.save(account);
         log.debug("modifyAccount:{}", newAccount);
