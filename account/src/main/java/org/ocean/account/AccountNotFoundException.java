@@ -1,27 +1,12 @@
 package org.ocean.account;
 
-import org.ocean.type.Email;
-
 public class AccountNotFoundException extends RuntimeException {
 
-    private Long id;
-    private Email email;
+    public AccountNotFoundException(String message){
+        super(String.format("Not Found Account[%s].", message));
+    }
 
     public AccountNotFoundException(Long id){
-        super(String.format("Not Found Account ID[%d]", id));
-        this.id = id;
-    }
-
-    public AccountNotFoundException(Email email){
-        super(String.format("Not Found Account Email[%s]", email.getValue()));
-        this.email = email;
-    }
-
-    public Long getId(){
-        return this.id;
-    }
-
-    public Email getEmail(){
-        return this.email;
+        super(String.format("Not Found Account[%d].", id));
     }
 }
