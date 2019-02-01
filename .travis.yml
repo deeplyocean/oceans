@@ -2,9 +2,11 @@ language: java
 jdk:
   - openjdk8
 
+dist: trusty
+
 install: true
 
-script: mvn cobertura:cobertura
+script: - mvn org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 
 before_install:
   - mvn clean
@@ -13,8 +15,14 @@ branches:
  only:
     - master
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+addons:
+  sonarcloud:
+    organization: "deeplyocean-github"
+    token:
+      secure: "f1e81591eca2610504765c2cd05ada5a74ac98a2"
+
+#after_success:
+#  -
 
 #notifications:
 #  slack:
