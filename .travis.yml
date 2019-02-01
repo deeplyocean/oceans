@@ -2,8 +2,6 @@ language: java
 jdk:
   - openjdk8
 
-dist: trusty
-
 install: true
 
 script: - mvn org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
