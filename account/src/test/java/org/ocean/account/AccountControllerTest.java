@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -53,6 +52,23 @@ public class AccountControllerTest {
                 .andExpect(jsonPath("$.email.value").value(account.getEmail().getValue()))
                 .andExpect(jsonPath("$.accountName").value(account.getAccountName()))
                 .andExpect(jsonPath("$.roles[0]").value(AccountRoles.ADMIN.name()))
+        ;
+    }
+
+    @Test
+    @Rollback
+    public void createAccountInvalidEmailTest() throws Exception {
+        AccountDto.Create account = AccountDto.Create.builder()
+                .email(Email.builder().value("invalidemail").build())
+                .password(Password.builder().value("test1234").build())
+                .accountName("ethan")
+                .roles(Arrays.asList(AccountRoles.ADMIN))
+                .build();
+        ResultActions createResult = mockMvc.perform(post("/accounts")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(account)));
+        createResult.andDo(print())
+                .andExpect(status().isBadRequest())
         ;
     }
 

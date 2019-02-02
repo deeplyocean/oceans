@@ -22,10 +22,16 @@ public class Email implements Serializable {
     private String value;
 
     public String getId(){
+        if(value.indexOf('@') == -1){
+            return value;
+        }
         return value.substring(0,value.indexOf('@'));
     }
 
     public String getHost(){
+        if(value.indexOf('@') == -1){
+            return "";
+        }
         return value.substring(value.indexOf('@')+1);
     }
 }
