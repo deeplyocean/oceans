@@ -2,7 +2,9 @@ package org.ocean.account;
 
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.ocean.type.Email;
 import org.ocean.type.Password;
 
@@ -16,7 +18,7 @@ public class AccountDto {
         throw new IllegalStateException(this.getClass().getName());
     }
 
-    @Data @Builder
+    @Getter @Setter @Builder
     public static class Create {
         @Valid
         private Email email;
@@ -27,7 +29,7 @@ public class AccountDto {
         private List<AccountRoles> roles;
     }
 
-    @Data
+    @Getter @Setter @EqualsAndHashCode(of = "id")
     public static class Response {
         private Long id;
         private Email email;
@@ -35,7 +37,7 @@ public class AccountDto {
         private List<AccountRoles> roles;
     }
 
-    @Data @Builder
+    @Getter @Setter @Builder
     public static class Update {
         @Valid
         private Email email;
